@@ -2,7 +2,7 @@
 // module/Album/test/AlbumTest/Model/AlbumTableTest.php:
 namespace Album\Model;
 
-use Zend\Db\ResultSet\ResultSet;
+use Laminas\Db\ResultSet\ResultSet;
 use PHPUnit_Framework_TestCase;
 
 class AlbumTableTest extends PHPUnit_Framework_TestCase
@@ -10,7 +10,7 @@ class AlbumTableTest extends PHPUnit_Framework_TestCase
     public function testFetchAllReturnsAllAlbums()
     {
         $resultSet        = new ResultSet();
-        $mockTableGateway = $this->getMock('Zend\Db\TableGateway\TableGateway',
+        $mockTableGateway = $this->getMock('Laminas\Db\TableGateway\TableGateway',
                                            array('select'), array(), '', false);
         $mockTableGateway->expects($this->once())
                          ->method('select')
@@ -32,7 +32,7 @@ class AlbumTableTest extends PHPUnit_Framework_TestCase
         $resultSet->setArrayObjectPrototype(new Album());
         $resultSet->initialize(array($album));
 
-        $mockTableGateway = $this->getMock('Zend\Db\TableGateway\TableGateway', array('select'), array(), '', false);
+        $mockTableGateway = $this->getMock('Laminas\Db\TableGateway\TableGateway', array('select'), array(), '', false);
         $mockTableGateway->expects($this->once())
                          ->method('select')
                          ->with(array('id' => 123))
@@ -45,7 +45,7 @@ class AlbumTableTest extends PHPUnit_Framework_TestCase
 
     public function testCanDeleteAnAlbumByItsId()
     {
-        $mockTableGateway = $this->getMock('Zend\Db\TableGateway\TableGateway', array('delete'), array(), '', false);
+        $mockTableGateway = $this->getMock('Laminas\Db\TableGateway\TableGateway', array('delete'), array(), '', false);
         $mockTableGateway->expects($this->once())
                          ->method('delete')
                          ->with(array('id' => 123));
@@ -60,7 +60,7 @@ class AlbumTableTest extends PHPUnit_Framework_TestCase
         $album     = new Album();
         $album->exchangeArray($albumData);
 
-        $mockTableGateway = $this->getMock('Zend\Db\TableGateway\TableGateway', array('insert'), array(), '', false);
+        $mockTableGateway = $this->getMock('Laminas\Db\TableGateway\TableGateway', array('insert'), array(), '', false);
         $mockTableGateway->expects($this->once())
                          ->method('insert')
                          ->with($albumData);
@@ -79,7 +79,7 @@ class AlbumTableTest extends PHPUnit_Framework_TestCase
         $resultSet->setArrayObjectPrototype(new Album());
         $resultSet->initialize(array($album));
 
-        $mockTableGateway = $this->getMock('Zend\Db\TableGateway\TableGateway',
+        $mockTableGateway = $this->getMock('Laminas\Db\TableGateway\TableGateway',
                                            array('select', 'update'), array(), '', false);
         $mockTableGateway->expects($this->once())
                          ->method('select')
@@ -100,7 +100,7 @@ class AlbumTableTest extends PHPUnit_Framework_TestCase
         $resultSet->setArrayObjectPrototype(new Album());
         $resultSet->initialize(array());
 
-        $mockTableGateway = $this->getMock('Zend\Db\TableGateway\TableGateway', array('select'), array(), '', false);
+        $mockTableGateway = $this->getMock('Laminas\Db\TableGateway\TableGateway', array('select'), array(), '', false);
         $mockTableGateway->expects($this->once())
                          ->method('select')
                          ->with(array('id' => 123))

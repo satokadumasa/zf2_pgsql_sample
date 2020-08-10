@@ -3,10 +3,8 @@
     "description": "Tutorial Application for ZF2",
     "license": "BSD-3-Clause",
     "keywords": [
-        "laminas",
-        "mvc",
-        "skeleton",
-        "framework"
+        "framework",
+        "zf2"
     ],
     "homepage": "http://framework.zend.com/",
     "require": {

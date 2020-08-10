@@ -4,11 +4,11 @@ namespace AlbumTest\Controller;
 
 use AlbumTest\Bootstrap;
 use Album\Controller\AlbumController;
-use Zend\Http\Request;
-use Zend\Http\Response;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch;
-use Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter;
+use Laminas\Http\Request;
+use Laminas\Http\Response;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\RouteMatch;
+use Laminas\Mvc\Router\Http\TreeRouteStack as HttpRouter;
 use PHPUnit_Framework_TestCase;
 
 class AlbumControllerTest extends PHPUnit_Framework_TestCase

@@ -2,8 +2,8 @@
 
 namespace Album\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 use Album\Model\Album;
 use Album\Form\AlbumForm;
 

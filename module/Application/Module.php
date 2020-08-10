@@ -2,7 +2,7 @@
 
 namespace Application;
 
-use Zend\Mvc\ModuleRouteListener;
+use Laminas\Mvc\ModuleRouteListener;
 
 class Module
 {
@@ -55,7 +55,7 @@ class Module
     public function getAutoloaderConfig()
     {
         return array(
-            'Zend\Loader\StandardAutoloader' => array(
+            'Laminas\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),

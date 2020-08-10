@@ -3,7 +3,8 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'type' => 'Laminas\Router\Http\Segment',
+                //'type' => 'Laminas\Mvc\Router\Http\Segment',
                 'options' => array(
                     'route'    => '/[:lang]',
                     'constraints' => array(
@@ -52,25 +53,27 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+            // 'translator' => 'Laminas\I18n\Translator\TranslatorServiceFactory',
+            'Laminas\I18n\Translator\TranslatorServiceFactory' => 'Laminas\I18n\Translator\TranslatorServiceFactory',
         ),
         'services' => array(
-            'session' => new Zend\Session\Container('zf2tutorial'),
+            'session' => new Laminas\Session\Container('zf2tutorial'),
         ),
     ),
-    'translator' => array(
-        'locale' => 'en_US',
-        'translation_file_patterns' => array(
-            array(
-                'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
-                'pattern'  => '%s.mo',
-            ),
-        ),
-    ),
+    // 'translator' => array(
+    //     'locale' => 'en_US',
+    //     'translation_file_patterns' => array(
+    //         array(
+    //             'type'     => 'gettext',
+    //             'base_dir' => __DIR__ . '/../language',
+    //             'pattern'  => '%s.mo',
+    //         ),
+    //     ),
+    // ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'translate' => 'Laminas\I18n\Translator\TranslatorServiceFactory',
         ),
     ),
     'view_manager' => array(
