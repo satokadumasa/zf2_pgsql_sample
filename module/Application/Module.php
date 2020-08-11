@@ -62,5 +62,18 @@ class Module
             ),
         );
     }
-
+    
+    // Add this method:
+    public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                Controller\AlbumController::class => function($container) {
+                    return new Controller\AlbumController(
+                        $container->get(Model\AlbumTable::class)
+                    );
+                },
+            ],
+        ];
+    }
 }

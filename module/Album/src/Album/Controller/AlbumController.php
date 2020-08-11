@@ -3,6 +3,7 @@
 namespace Album\Controller;
 
 use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Db\TableGateway\TableGateway;
 use Laminas\View\Model\ViewModel;
 use Album\Model\Album;
 use Album\Form\AlbumForm;
@@ -10,12 +11,20 @@ use Album\Form\AlbumForm;
 class AlbumController extends AbstractActionController
 {
     protected $albumTable;
+    // Add this property:
+    private $table;
+
+    // Add this constructor:
+    public function __construct(AlbumTable $table)
+    {
+        $this->table = $table;
+    }
 
     public function indexAction()
     {
-        return new ViewModel(array(
-            'albums' => $this->getAlbumTable()->fetchAll(),
-        ));
+        return new ViewModel([
+            'albums' => $this->table->fetchAll(),
+        ]);
     }
 
     public function addAction()

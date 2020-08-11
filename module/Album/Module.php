@@ -46,4 +46,18 @@ class Module
     {
         return include __DIR__ . '/config/module.config.php';
     }
+    
+    // Add this method:
+    public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                Controller\AlbumController::class => function($container) {
+                    return new Controller\AlbumController(
+                        $container->get(Model\AlbumTable::class)
+                    );
+                },
+            ],
+        ];
+    }
 }
