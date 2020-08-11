@@ -6,6 +6,7 @@ use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Db\TableGateway\TableGateway;
 use Laminas\View\Model\ViewModel;
 use Album\Model\Album;
+use Album\Model\AlbumTable;
 use Album\Form\AlbumForm;
 
 class AlbumController extends AbstractActionController

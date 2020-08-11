@@ -15,7 +15,7 @@
         ?>
 
         <!-- Le styles -->
-        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'images/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
             ->prependStylesheet($this->basePath('css/style.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
         ?>
@@ -52,6 +52,8 @@
         </div>
         <?= $this->inlineScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery-3.5.1.min.js')) ?>
+            ->prependFile($this->basePath('js/jquery-migrate-3.0.0.js')) 
+            ->prependFile($this->basePath('js/jquery-3.5.1.min.js')) 
+            ?>
     </body>
 </html>

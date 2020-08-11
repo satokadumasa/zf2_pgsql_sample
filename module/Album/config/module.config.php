@@ -1,9 +1,9 @@
 <?php
 return [
     'controllers' => [
-        // 'invokables' => [
-        //     'Album\Controller\Album' => 'Album\Controller\AlbumController',
-        // ],
+        'invokables' => [
+            'Album\Controller\Album' => 'Album\Controller\AlbumController',
+        ],
         'factories' => [
             Controller\AlbumController::class => InvokableFactory::class,
         ],

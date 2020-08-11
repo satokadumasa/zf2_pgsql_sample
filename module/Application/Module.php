@@ -3,8 +3,13 @@
 namespace Application;
 
 use Laminas\Mvc\ModuleRouteListener;
+use Laminas\Db\Adapter\AdapterInterface;
+use Laminas\Db\ResultSet\ResultSet;
+use Laminas\Db\TableGateway\TableGateway;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 
-class Module
+// class Module
+class Module implements ConfigProviderInterface
 {
     public function onBootstrap($e)
     {
@@ -62,18 +67,37 @@ class Module
             ),
         );
     }
-    
     // Add this method:
-    public function getControllerConfig()
+    public function getServiceConfig()
     {
         return [
             'factories' => [
-                Controller\AlbumController::class => function($container) {
-                    return new Controller\AlbumController(
-                        $container->get(Model\AlbumTable::class)
-                    );
+                Model\AlbumTable::class => function($container) {
+                    $tableGateway = $container->get(Model\AlbumTableGateway::class);
+                    return new Model\AlbumTable($tableGateway);
+                },
+                Model\AlbumTableGateway::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Album());
+                    return new TableGateway('album', $dbAdapter, null, $resultSetPrototype);
                 },
             ],
         ];
     }
+    
+    // // Add this method:
+    // public function getControllerConfig()
+    // {
+    //     echo "Album";
+    //     return [
+    //         'factories' => [
+    //             Controller\AlbumController::class => function($container) {
+    //                 return new Controller\AlbumController(
+    //                     $container->get(Model\AlbumTable::class)
+    //                 );
+    //             },
+    //         ],
+    //     ];
+    // }
 }
