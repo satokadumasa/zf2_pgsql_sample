@@ -1,16 +1,13 @@
 <?php
 
-namespace Album\Model;
+namespace Application\Model;
 
 use Laminas\Db\TableGateway\TableGateway;
-use Laminas\Db\TableGateway\TableGatewayInterface;
 
 class AlbumTable
 {
-    protected $tableGateway;
 
-    // public function __construct(TableGateway $tableGateway)
-    public function __construct(TableGatewayInterface $tableGateway)
+    public function __construct(TableGateway $tableGateway)
     {
         $this->tableGateway = $tableGateway;
     }

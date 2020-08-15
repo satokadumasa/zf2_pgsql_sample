@@ -85,19 +85,4 @@ class Module implements ConfigProviderInterface
             ],
         ];
     }
-    
-    // // Add this method:
-    // public function getControllerConfig()
-    // {
-    //     echo "Album";
-    //     return [
-    //         'factories' => [
-    //             Controller\AlbumController::class => function($container) {
-    //                 return new Controller\AlbumController(
-    //                     $container->get(Model\AlbumTable::class)
-    //                 );
-    //             },
-    //         ],
-    //     ];
-    // }
 }

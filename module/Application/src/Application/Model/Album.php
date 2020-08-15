@@ -1,13 +1,13 @@
 <?php
 
-namespace Album\Model;
+namespace Application\Model;
 
 use Laminas\InputFilter\Factory as InputFactory;
 use Laminas\InputFilter\InputFilter;
 use Laminas\InputFilter\InputFilterAwareInterface;
 use Laminas\InputFilter\InputFilterInterface;
 
-class Album implements InputFilterAwareInterface
+class Album
 {
     public $id;
     public $artist;

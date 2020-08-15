@@ -1,30 +1,28 @@
 <?php
 
-namespace Album\Controller;
+namespace Application\Controller;
 
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Db\TableGateway\TableGateway;
 use Laminas\View\Model\ViewModel;
-use Album\Model\Album;
-use Album\Model\AlbumTable;
-use Album\Form\AlbumForm;
+use Application\Model\Album;
+use Application\Model\AlbumTable;
+use Application\Form\AlbumForm;
 
 class AlbumController extends AbstractActionController
 {
-    protected $albumTable;
-    // Add this property:
-    private $table;
+    // protected $albumTable;
 
     // Add this constructor:
-    public function __construct(AlbumTable $table)
+    public function __construct(AlbumTable $albumTable)
     {
-        $this->table = $table;
+        $this->albumTable = $albumTable;
     }
 
     public function indexAction()
     {
         return new ViewModel([
-            'albums' => $this->table->fetchAll(),
+            'albums' => $this->albumTable->fetchAll(),
         ]);
     }
 

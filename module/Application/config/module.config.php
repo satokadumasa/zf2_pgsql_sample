@@ -1,95 +1,97 @@
 <?php
-return array(
-    'router' => array(
-        'routes' => array(
-            'home' => array(
+return [
+    'router' => [
+        'routes' => [
+            'home' => [
                 'type' => 'Laminas\Router\Http\Segment',
-                //'type' => 'Laminas\Mvc\Router\Http\Segment',
-                'options' => array(
+                'options' => [
                     'route'    => '/[:lang]',
-                    'constraints' => array(
+                    'constraints' => [
                         'lang' => '[a-z]{2}(-[A-Z]{2}){0,1}'
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Album\Controller\Album',
-                        'action'     => 'index'
-                    ),
-                ),
-            ),
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ],
+                ],
+            ],
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
-            'application' => array(
+            'application' => [
                 'type'    => 'Segment',
-                'options' => array(
+                'options' => [
                     'route'    => '[/:lang]/application',
-                    'constraints' => array(
+                    'constraints' => [
                         'lang' => '[a-z]{2}(-[A-Z]{2}){0,1}'
-                    ),
-                    'defaults' => array(
+                    ],
+                    'defaults' => [
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller'    => 'Index',
                         'action'        => 'index',
-                    ),
-                ),
+                    ],
+                ],
                 'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route' => '[/:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*'
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'service_manager' => array(
-        'factories' => array(
-            // 'translator' => 'Laminas\I18n\Translator\TranslatorServiceFactory',
+            ],
+            'album' => [
+                'type'    => 'segment',
+                'options' => [
+                    'route'    => '/album[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ],
+                    'defaults' => [
+                        'controller' => Application\Controller\AlbumController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
             'Laminas\I18n\Translator\TranslatorServiceFactory' => 'Laminas\I18n\Translator\TranslatorServiceFactory',
-        ),
-        'services' => array(
+        ],
+        'services' => [
             'session' => new Laminas\Session\Container('zf2tutorial'),
-        ),
-    ),
-    'translator' => array(
+        ],
+    ],
+    'translator' => [
         'locale' => 'en_US',
-        'translation_file_patterns' => array(
-            array(
+        'translation_file_patterns' => [
+            [
                 'type'     => 'gettext',
                 'base_dir' => __DIR__ . '/../language',
                 'pattern'  => '%s.mo',
-            ),
-        ),
-    ),
-    'controllers' => array(
-        'invokables' => array(
+            ],
+        ],
+    ],
+    'controllers' => [
+        'invokables' => [
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'translate' => 'Laminas\I18n\Translator\TranslatorServiceFactory',
-        ),
-    ),
-    'view_manager' => array(
+        ],
+        'factories' => [
+            Application\Controller\AlbumController::class => Application\Controller\Factory\AlbumControllerFactory::class,
+        ],
+    ],
+    'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
         'doctype'                  => 'HTML5',
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
-        'template_map' => array(
+        'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
-        ),
-        'template_path_stack' => array(
+        ],
+        'template_path_stack' => [
             __DIR__ . '/../view',
-        ),
-    ),
-);
+        ],
+    ],
+];
