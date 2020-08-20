@@ -28,7 +28,45 @@ class AlbumController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new AlbumForm();
+        $options = [
+            'table_name' => 'albun',
+            'column_defs' => [
+                [
+                    'name' => 'id',
+                    'attributes' => [
+                        'type'  => 'hidden',
+                    ],
+                ],
+                [
+                    'name' => 'artist',
+                    'attributes' => [
+                        'type'  => 'text',
+                    ],
+                    'options' => [
+                        'label' => 'Artist',
+                    ],
+                ],
+                [
+                    'name' => 'title',
+                    'attributes' => [
+                        'type'  => 'text',
+                    ),
+                    'options' => [
+                        'label' => 'Title',
+                    ),
+                ],
+                [
+                    'name' => 'submit',
+                    'attributes' => [
+                        'type'  => 'submit',
+                        'value' => 'Go',
+                        'id' => 'submitbutton',
+                    ],
+                ],
+
+            ],
+        ];
+        $form = new AlbumForm($options);
         $form->get('submit')->setValue('Add');
 
         $request = $this->getRequest();
